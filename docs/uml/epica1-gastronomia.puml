@@ -1,0 +1,32 @@
+@startuml
+
+left to right direction
+
+actor Socio
+actor "Restaurante / Aliado" as Restaurante
+actor "Core Financiero" as Core
+
+rectangle "BANKdragon" {
+
+    usecase "Filtrar restaurantes" as UC1
+    usecase "Consultar disponibilidad" as UC2
+    usecase "Reservar experiencia\ngastronómica" as UC3
+    usecase "Seleccionar fecha,\nhora y comensales" as UC4
+    usecase "Seleccionar menú" as UC5
+    usecase "Autorizar compra\no garantía" as UC6
+    usecase "Generar confirmación\ndigital" as UC7
+
+    UC3 .> UC4 : <<include>>
+    UC3 .> UC5 : <<include>>
+    UC3 .> UC6 : <<include>>
+    UC3 .> UC7 : <<include>>
+}
+
+Socio --> UC1
+Socio --> UC2
+Socio --> UC3
+
+Core --> UC6
+Restaurante --> UC7
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+
+left to right direction
+
+actor Socio
+actor "Organizador / Aliado" as Organizador
+actor "Core Financiero" as Core
+
+rectangle "BANKdragon" {
+
+    usecase "Acceder a preventa\nprioritaria" as UC1
+    usecase "Gestionar flujo\nde acceso" as UC2
+
+    usecase "Comprar localidad" as UC3
+    usecase "Consultar localidades\ndisponibles" as UC4
+    usecase "Seleccionar localidad" as UC5
+    usecase "Reservar temporalmente\nlocalidad" as UC6
+    usecase "Realizar pago" as UC7
+    usecase "Confirmar compra" as UC8
+    usecase "Liberar localidad" as UC9
+
+    UC1 .> UC2 : <<include>>
+
+    UC3 .> UC4 : <<include>>
+    UC3 .> UC5 : <<include>>
+    UC3 .> UC6 : <<include>>
+    UC3 .> UC7 : <<include>>
+    UC3 .> UC8 : <<include>>
+
+    UC9 .> UC6 : <<extend>>
+}
+
+Socio --> UC1
+Socio --> UC3
+
+Organizador --> UC4
+Organizador --> UC8
+
+Core --> UC7
+
+@enduml

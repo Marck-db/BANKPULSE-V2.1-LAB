@@ -1,0 +1,36 @@
+@startuml
+
+left to right direction
+
+actor "Socio anfitrión" as Anfitrion
+actor "Socio invitado" as Invitado
+actor "Core Financiero" as Core
+
+rectangle "BANKdragon" {
+
+    usecase "Crear sesión\ncompartida" as UC1
+    usecase "Vincular\nparticipantes" as UC2
+    usecase "Definir distribución\ndel consumo" as UC3
+    usecase "Consultar progreso\nde distribución" as UC4
+    usecase "Autorizar participación\no cargo" as UC5
+    usecase "Cerrar transacción\ncolectiva" as UC6
+    usecase "Verificar\nconfirmaciones" as UC7
+    usecase "Procesar cargos\nindividuales" as UC8
+
+    UC1 .> UC2 : <<include>>
+    UC1 .> UC3 : <<include>>
+
+    UC6 .> UC7 : <<include>>
+    UC6 .> UC8 : <<include>>
+}
+
+Anfitrion --> UC1
+Anfitrion --> UC4
+Anfitrion --> UC6
+
+Invitado --> UC4
+Invitado --> UC5
+
+Core --> UC8
+
+@enduml

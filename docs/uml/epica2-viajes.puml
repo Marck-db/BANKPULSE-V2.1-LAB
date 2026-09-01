@@ -1,0 +1,32 @@
+@startuml
+
+left to right direction
+
+actor Socio
+actor "Operador / Aliado de viaje" as Operador
+
+rectangle "BANKdragon" {
+
+    usecase "Acceder a beneficio\nde viaje" as UC1
+    usecase "Validar elegibilidad" as UC2
+    usecase "Generar credencial\nde acceso" as UC3
+    usecase "Determinar tipo\nde beneficio" as UC4
+    usecase "Presentar credencial" as UC5
+    usecase "Verificar credencial" as UC6
+    usecase "Registrar uso\ndel beneficio" as UC7
+
+    UC1 .> UC2 : <<include>>
+    UC1 .> UC3 : <<include>>
+    UC1 .> UC4 : <<include>>
+
+    UC6 .> UC7 : <<include>>
+}
+
+Socio --> UC1
+Socio --> UC5
+
+Operador --> UC6
+
+UC5 --> UC6
+
+@enduml
