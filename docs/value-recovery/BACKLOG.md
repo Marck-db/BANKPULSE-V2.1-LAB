@@ -71,7 +71,12 @@ Roles propuestos: PO Martín Endara; SM Antonio Muñoz; desarrollo Martín, Anto
 Definition of Done: criterios verificados en el stack original, evidencia guardada, README y matriz actualizados, PR revisado/comentado por otro integrante y fusionado, sin secretos. El código heredado se distingue del aporte nuevo.
 
 ## Tareas técnicas
-- Martín: backlog, MVC y matriz (5 h).
-- Marco: comprobar reglas y ejecutar pruebas contra Docker (5 h).
-- Antonio: README, capturas y revisión cruzada (5 h).
-- Los tres: PR, correcciones y ensayo (3 h de trabajo total).
+- HU-01: identificar contrato y probar creación; Marco, 2 h.
+- HU-02: comprobar validaciones (BP) o consulta (LP); Marco, 2 h.
+- HU-03: probar reintento (BP) o llegada al worker (LP); Marco y Antonio, 3 h.
+- HU-04: comprobar consulta (BP) o secuencia del mismo id (LP); Antonio, 3 h.
+- Backlog, MVC y matriz; Martín, 4 h.
+- README, PR, revisión cruzada y evidencia; Martín y Antonio, 3 h.
+- Ensayo del flujo; los tres, 1 h de trabajo total.
+
+Total: 18 horas por proyecto. En las tareas compartidas las horas son esfuerzo combinado, no se multiplican por persona. Se propone una semana, del 05 al 11 de octubre de 2026. Estos responsables son una propuesta de planificación.

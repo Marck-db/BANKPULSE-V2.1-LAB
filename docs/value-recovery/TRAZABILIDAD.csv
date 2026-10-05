@@ -5,7 +5,7 @@ BP-01","HU-BP-01
 2 pt","SPR-BP-01
 Pago válido sin duplicar","MVC-BP-01
 PaymentService / PaymentRepository / Payment; pagos recientes / createPayment(); PaymentController","docs/value-recovery-bp
-Pendiente de apertura
+https://github.com/Marck-db/BANKPULSE-V2.1-LAB/pull/1
 Cambios: R1, R2, R3",console + payments-api + mariadb,"T-BP-01
 Pendiente de ejecutar",sprint1.json: pendiente de ejecutar
 "INC-BP-01
@@ -14,7 +14,7 @@ BP-02","HU-BP-02
 1 pt","SPR-BP-01
 Pago válido sin duplicar","MVC-BP-01
 PaymentService / PaymentRepository / Payment; pagos recientes / createPayment(); PaymentController","docs/value-recovery-bp
-Pendiente de apertura
+https://github.com/Marck-db/BANKPULSE-V2.1-LAB/pull/1
 Cambios: R1, R2, R3",console + payments-api + mariadb,"T-BP-02
 Pendiente de ejecutar",sprint1.json: pendiente de ejecutar
 "INC-BP-01
@@ -23,7 +23,7 @@ BP-03","HU-BP-03
 2 pt","SPR-BP-01
 Pago válido sin duplicar","MVC-BP-01
 PaymentService / PaymentRepository / Payment; pagos recientes / createPayment(); PaymentController","docs/value-recovery-bp
-Pendiente de apertura
+https://github.com/Marck-db/BANKPULSE-V2.1-LAB/pull/1
 Cambios: R1, R2, R3",console + payments-api + mariadb,"T-BP-03
 Pendiente de ejecutar",sprint1.json: pendiente de ejecutar
 "INC-BP-01
@@ -32,6 +32,6 @@ BP-04","HU-BP-04
 1 pt","SPR-BP-01
 Pago válido sin duplicar","MVC-BP-01
 PaymentService / PaymentRepository / Payment; pagos recientes / createPayment(); PaymentController","docs/value-recovery-bp
-Pendiente de apertura
+https://github.com/Marck-db/BANKPULSE-V2.1-LAB/pull/1
 Cambios: R1, R2, R3",console + payments-api + mariadb,"T-BP-04
 Pendiente de ejecutar",PDF inicial p. 10: consulta; prueba nueva pendiente
