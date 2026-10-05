@@ -143,3 +143,21 @@ Luego use **Stop Codespace**.
 ## Seguridad
 
 No suba `.env`, tokens, claves institucionales o credenciales reales. Los passwords incluidos son solamente para un entorno local efimero de aprendizaje.
+
+## Entrega Value Recovery Journey del equipo
+
+Alcance de SPR-BP-01: creación, validación, reintento idempotente y consulta de pagos ficticios. El core es Java 21 / Spring Boot 3.4.5 / JPA, con MariaDB 11.4; la Vista usa HTML/JS servidos por Nginx. La plataforma completa conserva los otros dominios del laboratorio.
+
+Artefactos: [backlog y sprint](docs/value-recovery/BACKLOG.md), [MVC](docs/value-recovery/MVC.md), [matriz](docs/value-recovery/TRAZABILIDAD.csv). Los hallazgos conservan IDs del PDF inicial. El código del laboratorio es base heredada; este PR añade documentación y pruebas verificables.
+
+Requisitos: Docker con Compose v2; Python 3 para la prueba portable. En PowerShell crear variables con `Copy-Item .env.example .env`; en Linux con `cp .env.example .env`. Revisar valores de laboratorio en .env.example; nunca subir .env. Construir e iniciar: `docker compose up -d --build --wait`; estado: `docker compose ps`; logs: `docker compose logs --no-color payments-api audit-api`; detener: `docker compose down`. No usar down -v si se quieren conservar los volúmenes.
+
+UI y base de prueba: http://localhost:8080. Salud: GET /health/payments. Operación: POST /api/payments con header X-Idempotency-Key y body account, amount, currency; devuelve **200**, no 201. Reintento secuencial igual devuelve mismo id. GET /api/payments devuelve un arreglo de hasta 50 elementos. El test automatizado usa clave/cuenta nuevas y guarda evidencias/sprint1.json:
+
+```sh
+python scripts/value-recovery-smoke.py --project BANKPULSE
+```
+
+Branching: GitHub Flow, rama docs/value-recovery-bp → PR → comentario/revisión de otro integrante → merge a main. Relacionar HU-BP-01…04 y registrar commit probado. Si Docker no inicia, abrir Docker Desktop; si 8080 está ocupado, detener el otro proyecto o ajustar el puerto y pasar --base al script. Si falta una API, revisar sus logs. Cambios de credenciales con volúmenes existentes requieren revisar la configuración, no borrar datos automáticamente.
+
+Limitaciones conocidas: el frontend etiqueta la creación de pago como 201 en su traza, aunque la API devuelve 200; prevalece la respuesta HTTP real. El reintento con datos distintos no devuelve conflicto en la base actual. Salud y consultas no prueban todas las reglas de negocio. Los resultados no se declaran PASS hasta ejecutar la prueba.
