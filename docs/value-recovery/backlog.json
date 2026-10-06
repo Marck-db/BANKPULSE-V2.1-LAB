@@ -1,0 +1,118 @@
+{
+  "project": "BANKPULSE",
+  "repo": "https://github.com/Marck-db/BANKPULSE-V2.1-LAB",
+  "base": "52f830e36938665be5e0913aab97f2818c4e55b5",
+  "source": "PDF inicial: secciones 1.1–1.4. Código original del repositorio del equipo.",
+  "goal": "Demostrar creación, validación, reintento idempotente y consulta de un pago ficticio.",
+  "selected": [
+    "01",
+    "02",
+    "03",
+    "04"
+  ],
+  "points": 6,
+  "stories": [
+    [
+      "01",
+      "Como usuario, quiero registrar un pago con cuenta, monto y moneda, para conservar mi operación.",
+      "POST /api/payments con X-Idempotency-Key nuevo: 200, id y estado ACCEPTED; datos consultables.",
+      "BP-01",
+      "Must",
+      2,
+      "—",
+      "Código base existente; prueba pendiente"
+    ],
+    [
+      "02",
+      "Como usuario, quiero rechazar datos inválidos, para evitar pagos incorrectos.",
+      "Cuenta vacía, amount < 0.01 o currency que no tenga tres letras: 400, sin nuevo pago.",
+      "BP-02",
+      "Must",
+      1,
+      "01",
+      "Código base existente; prueba pendiente"
+    ],
+    [
+      "03",
+      "Como usuario, quiero reintentar el mismo pago, para recuperar su respuesta sin duplicarlo.",
+      "Misma clave y mismos datos, enviados consecutivamente: 200 y mismo id; un solo registro.",
+      "BP-03",
+      "Must",
+      2,
+      "01",
+      "Código base existente; prueba pendiente"
+    ],
+    [
+      "04",
+      "Como usuario, quiero consultar pagos recientes, para revisar mi historial.",
+      "GET /api/payments: 200; arreglo con máximo 50 pagos en orden descendente de createdAt.",
+      "BP-04",
+      "Must",
+      1,
+      "01",
+      "Código base existente; consulta en PDF"
+    ],
+    [
+      "05",
+      "Como auditor, quiero guardar el evento junto al pago, para conservar su origen.",
+      "La transacción guarda Payment y OutboxEvent PAYMENT_CREATED juntos; si falla, no confirma cambios parciales.",
+      "BP-05",
+      "Should",
+      2,
+      "01",
+      "Código base existente; prueba pendiente"
+    ],
+    [
+      "06",
+      "Como auditor, quiero recibir el evento de pago, para consultar evidencia de la operación.",
+      "Con servicios disponibles, outbox queda sin pendientes y /api/audit contiene el evento con aggregateId del pago.",
+      "BP-06",
+      "Should",
+      2,
+      "05",
+      "Código base existente; prueba pendiente"
+    ],
+    [
+      "07",
+      "Como usuario, quiero una confirmación con id y datos, para reconocer el pago registrado.",
+      "La Vista muestra id, cuenta, monto, moneda y estado después de confirmar el registro.",
+      "BP-07",
+      "Should",
+      1,
+      "01",
+      "Propuesto; la Vista debe ampliarse"
+    ],
+    [
+      "08",
+      "Como usuario, quiero errores que indiquen el dato inválido, para corregir mi solicitud.",
+      "Un error de validación se presenta junto al dato afectado; no se confunde con un fallo de comunicación.",
+      "BP-08",
+      "Should",
+      1,
+      "02",
+      "Propuesto; prueba UI pendiente"
+    ],
+    [
+      "09",
+      "Como usuario, quiero un listado completo, para distinguir operaciones similares.",
+      "La Vista muestra id, cuenta, monto, moneda, estado y fecha por cada pago; vacío y error se distinguen.",
+      "BP-14 / BP-10",
+      "Could",
+      2,
+      "04",
+      "Propuesto; la Vista actual muestra menos campos"
+    ],
+    [
+      "10",
+      "Como usuario, quiero detectar una clave usada con otros datos, para no confundir pagos.",
+      "La misma clave con datos distintos devuelve 409 y no modifica el pago original.",
+      "BP-11",
+      "Could",
+      2,
+      "03",
+      "Pendiente; el código base no compara datos"
+    ]
+  ],
+  "branch": "docs/value-recovery-bp",
+  "origin_map": "INC-BP-01: incepción 1.1 del PDF inicial. TEC-BP-01/02/03: análisis documental, escenarios y prototipado de sus secciones 1.2/1.3/1.4. Los hallazgos BP/LP mantienen los IDs del documento del equipo."
+}
